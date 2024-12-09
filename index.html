@@ -13,7 +13,7 @@
     <!-- html with bulm css -->
     <section class="section">
 
-      <div class="container is-fluid">
+      <div class="container" style="width:100%; max-width:240px !important;">
         <!-- <h1 class="title">
           Repeatable Test of Fitness
         </h1> -->
@@ -25,7 +25,7 @@
           Trage die fortlaufenden Gym-Timer Zeiten ein.
         </p>
 
-        <div class="fixed-grid has-4-cols block">
+        <div class="fixed-grid has-3-cols block">
           <p>30 Burpee over Rower</p>
           <div class="grid control">
             <div class="cell">
@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <div class="fixed-grid has-4-cols block">
+        <div class="fixed-grid has-3-cols block">
           <p>2000m Row</p>
           <div class="grid control">
             <div class="cell">
@@ -55,7 +55,7 @@
           </div>
         </div>
 
-        <div class="fixed-grid has-4-cols block">
+        <div class="fixed-grid has-3-cols block">
           <p>30 Burpees over rower</p>
           <div class="grid control">
             <div class="cell">
@@ -76,7 +76,9 @@
         </div>
 
         <div class="buttons block">
-          <button type="submit" onclick="calcScore();" class="button is-primary">Calc</button>
+          <button type="submit" onclick="calcScore();" class="button is-primary">
+            Berechnen
+          </button>
         </div>
 
 
@@ -134,7 +136,7 @@
       const bwresult = t3 - 60 - t2 + t1;
       const bwmin = Math.ceil(bwresult / 60);
       const bwsec = bwresult % 60
-      document.getElementById('bwresult').innerHTML = `Dein Bodyweight Score: <strong>${bwmin.toString().padStart(2, '0')}:${bwsec.toString().padStart(2, '0')}</strong>`
+      document.getElementById('bwresult').innerHTML = `Dein Bodyweight Score: <br><strong>${bwmin.toString().padStart(2, '0')}:${bwsec.toString().padStart(2, '0')}</strong>`
       // show the split in the columns
       document.getElementById('t1').innerHTML = `${t1} Sek.`
       document.getElementById('t3').innerHTML = `${t1} Sek.`
