@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        Repeatable Test of Fitness | Bodyweight-Test Score Calculator
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+  </head>
+
+  <body>
+    <!-- html with bulm css -->
+    <section class="section">
+
+      <div class="container is-fluid">
+        <!-- <h1 class="title">
+          Repeatable Test of Fitness
+        </h1> -->
+        <p class="subtitle">
+          Bodyweight-Test Score Calculator
+        </p>
+
+        <p class="block info">
+          Trage die fortlaufenden Gym-Timer Zeiten ein.
+        </p>
+
+        <div class="fixed-grid has-4-cols block">
+          <p>30 Burpee over Rower</p>
+          <div class="grid control">
+            <div class="cell">
+              <input id="m1" class="input" type="number" placeholder="Min">
+            </div>
+            <div class="cell">
+              <input id="s1" class="input" type="number" placeholder="Sec">
+            </div>
+            <div class="cell">
+              <!-- time mm:ss -->
+            </div>
+            <div class="cell">
+              <!-- time sec -->
+            </div>
+          </div>
+        </div>
+
+        <div class="fixed-grid has-4-cols block">
+          <p>2000m Row</p>
+          <div class="grid control">
+            <div class="cell">
+              <input id="m2" class="input" type="number" placeholder="Min">
+            </div>
+            <div class="cell">
+              <input id="s2" class="input" type="number" placeholder="Sec">
+            </div>
+            <div class="cell">
+              <!-- time mm:ss -->
+            </div>
+            <div class="cell">
+              <!-- time sec -->
+            </div>
+          </div>
+        </div>
+
+        <div class="fixed-grid has-4-cols block">
+          <p>30 Burpees over rower</p>
+          <div class="grid control">
+            <div class="cell">
+              <input id="m3" class="input" type="number" placeholder="Min">
+            </div>
+            <div class="cell">
+              <input id="s3" class="input" type="number" placeholder="Sec">
+            </div>
+            <div class="cell">
+              <!-- time mm:ss -->
+            </div>
+            <div class="cell">
+              <!-- time sec -->
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="has-text-danger" id="error"></p>
+          <p class="has-text-success" id="bwresult"></p>
+        </div>
+
+        <div class="buttons block">
+          <button type="submit" onclick="calcScore();" class="button is-primary">Calc</button>
+        </div>
+
+
+      </div>
+    </section>
+  </body>
+
+  <script>
+    const calcScore = () => {
+      document.getElementById('error').innerHTML = ""
+      document.getElementById('bwresult').innerHTML = ""
+      var m1 = document.getElementById('m1').value;
+      var s1 = document.getElementById('s1').value;
+      var m2 = document.getElementById('m2').value;
+      var s2 = document.getElementById('s2').value;
+      var m3 = document.getElementById('m3').value;
+      var s3 = document.getElementById('s3').value;
+      console.log(m1, s1, m2, s2, m3, s3);
+
+      // are all fields set?
+      if( m1.length == 0 | m2.length == 0 | m3.length == 0 | s1.length == 0 | s2.length == 0 | s3.length == 0 ){
+        document.getElementById('error').innerHTML = "Angaben unvollständig"
+        return;
+      }
+      // convert to number object
+      m1 = Number(m1);
+      m2 = Number(m2);
+      m3 = Number(m3);
+      s1 = Number(s1);
+      s2 = Number(s2);
+      s3 = Number(s3);
+      // are numbers within range
+      if((m1 < 0 | m1 > 99) | (m2 < 0 | m2 > 99) | (m3 < 0 | m3 > 99)){
+        document.getElementById('error').innerHTML = "Minutenangaben müssen zwischen 0 und 99 sein."
+        return;
+      }
+      if((s1 < 0 | s1 > 59) | (s2 < 0 | s2 > 59) | (s3 < 0 | s3 > 59)){
+        document.getElementById('error').innerHTML = "Sekundenangaben müssen zwischen 0 und 59 sein."
+        return;
+      }
+      // convert to seconds
+      const t1 = m1 * 60 + s1;
+      const t2 = m2 * 60 + s2;
+      const t3 = m3 * 60 + s3;
+      // are times in the right order?
+      if( t1 >= t2 ){
+        document.getElementById('error').innerHTML = "Zeitstempel T1 oder T2 sind falsch"
+        return;
+      }
+      if( t2 >= t3 ){
+        document.getElementById('error').innerHTML = "Zeitstempel T2 oder T3 sind falsch"
+        return;
+      }
+      // Compute Bodyweight Score
+      const bwresult = t3 - 60 - t2 + t1;
+      const bwmin = Math.ceil(bwresult / 60);
+      const bwsec = bwresult % 60
+      document.getElementById('bwresult').innerHTML = `Bodyweight Score is <strong>${bwmin.toString().padStart(2, '0')}:${bwsec.toString().padStart(2, '0')}</strong>`
+    }
+  </script>
+</html>
