@@ -32,13 +32,10 @@
               <input id="m1" class="input" type="number" placeholder="Min">
             </div>
             <div class="cell">
-              <input id="s1" class="input" type="number" placeholder="Sec">
+              <input id="s1" class="input" type="number" placeholder="Sek">
             </div>
             <div class="cell">
-              <!-- time mm:ss -->
-            </div>
-            <div class="cell">
-              <!-- time sec -->
+               <p id="t1" class="has-text-weight-light is-italic is-size-7"></p>
             </div>
           </div>
         </div>
@@ -50,13 +47,10 @@
               <input id="m2" class="input" type="number" placeholder="Min">
             </div>
             <div class="cell">
-              <input id="s2" class="input" type="number" placeholder="Sec">
+              <input id="s2" class="input" type="number" placeholder="Sek">
             </div>
             <div class="cell">
               <!-- time mm:ss -->
-            </div>
-            <div class="cell">
-              <!-- time sec -->
             </div>
           </div>
         </div>
@@ -68,13 +62,10 @@
               <input id="m3" class="input" type="number" placeholder="Min">
             </div>
             <div class="cell">
-              <input id="s3" class="input" type="number" placeholder="Sec">
+              <input id="s3" class="input" type="number" placeholder="Sek">
             </div>
             <div class="cell">
-              <!-- time mm:ss -->
-            </div>
-            <div class="cell">
-              <!-- time sec -->
+              <p id="t3" class="has-text-weight-light is-italic is-size-7"></p>
             </div>
           </div>
         </div>
@@ -143,7 +134,10 @@
       const bwresult = t3 - 60 - t2 + t1;
       const bwmin = Math.ceil(bwresult / 60);
       const bwsec = bwresult % 60
-      document.getElementById('bwresult').innerHTML = `Bodyweight Score is <strong>${bwmin.toString().padStart(2, '0')}:${bwsec.toString().padStart(2, '0')}</strong>`
+      document.getElementById('bwresult').innerHTML = `Dein Bodyweight Score: <strong>${bwmin.toString().padStart(2, '0')}:${bwsec.toString().padStart(2, '0')}</strong>`
+      // show the split in the columns
+      document.getElementById('t1').innerHTML = `${t1} Sek.`
+      document.getElementById('t3').innerHTML = `${t1} Sek.`
     }
   </script>
 </html>
