@@ -134,7 +134,7 @@
       }
       // Compute Bodyweight Score
       const bwresult = t3 - 60 - t2 + t1;
-      const bwmin = Math.ceil(bwresult / 60);
+      const bwmin = Math.floor(bwresult / 60);
       const bwsec = bwresult % 60
       document.getElementById('bwresult').innerHTML = `Dein Bodyweight Score: <br><strong>${bwmin.toString().padStart(2, '0')}:${bwsec.toString().padStart(2, '0')}</strong>`
       // show the split in the columns
